@@ -1,0 +1,243 @@
+<!doctype>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Temperature Conversion Formulas Calculator</title>
+</head>
+<body>
+	
+
+	<style type="text/css">
+
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body{
+display: flex;
+justify-content: center;
+flex-direction: column;
+align-items: center;
+margin: 50px auto;
+}
+
+
+/*PARENT CONTAINER*/
+.div_container{
+display: flex;
+flex-direction: column;
+margin-bottom: 15px;
+background: grey;
+width: 500px;
+}
+
+
+/*MAIN CONTAINER*/
+.container{
+padding: 10px;
+text-align: center;
+width: 80%;
+margin: 20px auto;
+}
+
+
+/*TITTLE DESCRIPTION*/
+h1{
+width: 70%;
+margin: 10px auto ;
+padding: 5px;
+background: black;
+color: white;
+font-size: 18px	;
+}
+
+
+/*INPUT FIELDS*/
+input[type=number]{
+width: 70%;
+height: 40px;
+margin: 10px auto ;
+border-radius: 5px;
+font-size: 16px;
+border: none;	
+padding-left: 5px;
+}
+
+
+/*WHEN INPUTS FIELD IS FOCUSED*/
+input:focus{
+background: repeating-linear-gradient(
+to left,
+red 0%,
+green 20%,
+blue 40%,
+yellow 60%,
+orange 80%,
+purple 100%);
+border-radius: 10px;
+color: white;
+}
+
+/*RESET BUTTON TO RESET INPUT FIELDS BACK TO NO VALUE*/
+.resetBtn{
+font-size: 20px;
+padding: 5px;
+background: black;
+color: white;
+border-radius: 5px;
+cursor: pointer;
+transition: all ease 1s;
+}
+
+/*WHEN A RESET BUTTON IS HOVER*/
+.resetBtn:hover{
+background: darkcyan;
+}
+
+
+		
+</style>
+
+	<div class="div_container"> <!--Parent Container Starts Here-->
+
+		<div class="container"> <!--Main Container Starts Here-->
+
+			<h1>Temperature Conversion Formulas Calculator</h1> <!-- Tittle description-->
+
+			<form id="input_form"> <!--Form Fields Starts Here-->
+				<input type="number" name="Fahrenheit" placeholder="Degree Fahrenheit- F" class="Fahrenheit"><br>
+				<input type="number" name="Celsius" placeholder="Degree Celsius- C" class="Celsius"><br>
+				<input type="number" name="Rankin" placeholder="Degree Rankin- R" class="Rankin"><br>
+				<input type="number" name="Kelvin" placeholder="Degree Kelvin- K" class="Kelvin">
+			</form> <!--Form Fields Ends Here-->
+
+			<button class="resetBtn">Reset</button> <!--Reset Button-->
+
+		</div> <!--Main Container Ends Here-->
+		
+		
+	</div><!--Parent Container Ends Here-->
+	
+
+
+	<script type="text/javascript">
+
+
+
+
+
+
+		const resetBtn = document.querySelector(".resetBtn");
+		const form = document.querySelector("#input_form");
+		const fahrenheit = document.querySelector(".Fahrenheit");
+		const celsius = document.querySelector(".Celsius");
+		const rankin = document.querySelector(".Rankin");
+		const kelvin = document.querySelector(".Kelvin");
+
+			
+
+	
+
+
+		form.addEventListener("input", (e) => {
+			if(e.target.classList.contains("Fahrenheit")){
+				// if an input field has a class of Fahrenheit
+				let f = e.target.value;
+				celsius.value = (5/9 * (f - 32)).toFixed(2);
+				rankin.value = ((f/10)* 10 + 459.69).toFixed(2);	
+				kelvin.value = (((f - 32) * 5/9)  + 273.16).toFixed(2);		 
+			}
+			if(e.target.classList.contains("Celsius")){
+				// if an input field has a class of Celsius
+				let c = e.target.value;
+				fahrenheit.value = ((9/5 * c) + 32).toFixed(2);
+				rankin.value = ((((c/10) * 10) + 273.16) * 9/5).toFixed(2);
+				kelvin.value = ((c/10)*10 + 273.16).toFixed(2);
+			}
+			if(e.target.classList.contains("Rankin")){
+				// if an input field has a class of Rankin
+				let r = e.target.value;
+				fahrenheit.value = (r - 459.69).toFixed(2);
+				celsius.value = ((5/9 * r) - 273.16).toFixed(2);
+				kelvin.value = (5/9 * r).toFixed(2);
+			}
+
+			if(e.target.classList.contains("Kelvin")){
+				// if an input field has a class of Kelvin
+				let k = e.target.value;
+				fahrenheit.value = (((k - 273.16) * 9/5) + 32).toFixed(2);
+				celsius.value = (k - 273.16).toFixed(2);
+				rankin.value = (9/5 * k).toFixed(2);
+			}
+			
+		});
+ 			
+ 			function setItemToLocalStorage(){
+ 				localStorage.setItem("fahrenheit", fahrenheit.value);
+ 				localStorage.setItem("kelvin", kelvin.value);
+ 				localStorage.setItem("celsius", celsius.value);
+ 				localStorage.setItem("rankin", rankin.value);
+
+ 			}
+
+ 			function getItemFromStorage(){
+ 				fahrenheit.value = localStorage.getItem("fahrenheit") || "";
+ 				kelvin.value = localStorage.getItem("kelvin") || "";
+ 				celsius.value = localStorage.getItem("celsius") || "";
+ 				rankin.value = localStorage.getItem("rankin") || "";
+
+ 			}
+
+ 			window.onload = getItemFromStorage;//Load saved input values when the page is load
+ 			window.onbeforeunload = setItemToLocalStorage;//save input values when the page is unloaded(refreshed)
+
+
+
+
+ 			
+
+		fahrenheit.addEventListener("click", ()=>{
+			//When fahrenheit input field is clicked, its value should display none;
+			fahrenheit.value = ""
+		})
+
+		celsius.addEventListener("click", ()=>{
+			//When celsius input field is clicked, its value should display none;
+			celsius.value = "";
+			
+		})
+
+		rankin.addEventListener("click", ()=>{
+			//When rankin input field is clicked, its value should display none;
+			rankin.value = ""
+		})
+		kelvin.addEventListener("click", ()=>{
+			//When kelvin input field is clicked, its value should display none;
+			kelvin.value = ""
+		});
+
+
+		// All input should display none when Reset btn is clicked
+		resetBtn.addEventListener("click", () =>{
+			// If input fields is empty while clicking a Reset button
+			if(fahrenheit.value == "" || celsius.value == "" || rankin.value == "" || kelvin.value == ""){
+				alert("Enter number in the field of your choice");
+			}else{
+				// When Reset button is clicked, all the input filds should display none value ;
+				fahrenheit.value = "";
+				celsius.value = "";
+				rankin.value = "";
+				kelvin.value = ""
+				};
+
+
+			})
+
+	</script>
+
+</body>
+</html>
