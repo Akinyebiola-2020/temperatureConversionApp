@@ -147,31 +147,31 @@ background: darkcyan;
 			if(e.target.classList.contains("Fahrenheit")){
 				// if an input field has a class of Fahrenheit
 				let f = e.target.value;
-				celsius.value = (5/9 * (f - 32)).toFixed(2);
-				rankin.value = ((f/10)* 10 + 459.69).toFixed(2);	
-				kelvin.value = (((f - 32) * 5/9)  + 273.16).toFixed(2);		 
+				celsius.value = (5/9 * (f - 32)).toFixed(2) + " °F";
+				rankin.value = ((f/10)* 10 + 459.69).toFixed(2) + " °F"  ;	
+				kelvin.value = (((f - 32) * 5/9)  + 273.16).toFixed(2) + " °F";		 
 			}
 			if(e.target.classList.contains("Celsius")){
 				// if an input field has a class of Celsius
 				let c = e.target.value;
-				fahrenheit.value = ((9/5 * c) + 32).toFixed(2);
-				rankin.value = ((((c/10) * 10) + 273.16) * 9/5).toFixed(2);
-				kelvin.value = ((c/10)*10 + 273.16).toFixed(2);
+				fahrenheit.value = ((9/5 * c) + 32).toFixed(2) + " °C";
+				rankin.value = ((((c/10) * 10) + 273.16) * 9/5).toFixed(2) + " °C";
+				kelvin.value = ((c/10)*10 + 273.16).toFixed(2) + " °C";
 			}
 			if(e.target.classList.contains("Rankin")){
 				// if an input field has a class of Rankin
 				let r = e.target.value;
-				fahrenheit.value = (r - 459.69).toFixed(2);
-				celsius.value = ((5/9 * r) - 273.16).toFixed(2);
-				kelvin.value = (5/9 * r).toFixed(2);
+				fahrenheit.value = (r - 459.69).toFixed(2) + " °R";
+				celsius.value = ((5/9 * r) - 273.16).toFixed(2) + " °R";
+				kelvin.value = (5/9 * r).toFixed(2) + " °R";
 			}
 
 			if(e.target.classList.contains("Kelvin")){
 				// if an input field has a class of Kelvin
 				let k = e.target.value;
-				fahrenheit.value = (((k - 273.16) * 9/5) + 32).toFixed(2);
-				celsius.value = (k - 273.16).toFixed(2);
-				rankin.value = (9/5 * k).toFixed(2);
+				fahrenheit.value = (((k - 273.16) * 9/5) + 32).toFixed(2) + " °K";
+				celsius.value = (k - 273.16).toFixed(2) + " °K";
+				rankin.value = (9/5 * k).toFixed(2) + " °K";
 			}
 			
 		});
